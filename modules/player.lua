@@ -8,55 +8,59 @@ local RitnSurface = require(ritnlib.defines.core.class.surface)
 
 
 local function on_player_created(e) 
-    remote.call('RitnCoreGame', "starting")   
+    remote.call('RitnCoreGame', "starting")  
+    if global.base.modules.player.on_player_created then 
     
-    local rPlayer = RitnEvent(e):getPlayer()
-    
-    if script.level.campaign_name 
-    or script.level.level_name ~= "wave-defense"
-    or script.level.level_name ~= "pvp" then 
-        -- Creation de la structure de map dans les données
-        local rSurface = RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
-    end
-    
-    rPlayer:new()
+        local rPlayer = RitnEvent(e):getPlayer()
+        
+        if script.level.campaign_name 
+        or script.level.level_name ~= "wave-defense"
+        or script.level.level_name ~= "pvp" then 
+            -- Creation de la structure de map dans les données
+            local rSurface = RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
+        end
+        
+        rPlayer:new()
 
-    log('on_player_created')
+        log('on_player_created')
+    end
 end
 
 
 local function on_player_changed_surface(e)
-    local rEvent = RitnEvent(e)
-    local rPlayer = RitnEvent(e):getPlayer()
+    if global.base.modules.player.on_player_changed_surface then 
+        local rEvent = RitnEvent(e)
+        local rPlayer = RitnEvent(e):getPlayer()
 
-    if string.sub(rPlayer.surface.name, 1, string.len(rEvent.prefix_lobby)) ~= rEvent.prefix_lobby then
-        -- remove old surface
-        local rSurface = rEvent:getSurface()
-        rSurface:removePlayer(rPlayer.player)
-        -- add new surface
-        rSurface = rPlayer:getSurface()
-        rSurface:addPlayer(rPlayer.player)
-        global.base.last_surface = rSurface.name
+        if string.sub(rPlayer.surface.name, 1, string.len(rEvent.prefix_lobby)) ~= rEvent.prefix_lobby then
+            -- remove old surface
+            local rSurface = rEvent:getSurface()
+            rSurface:removePlayer(rPlayer.player)
+            -- add new surface
+            rSurface = rPlayer:getSurface()
+            rSurface:addPlayer(rPlayer.player)
+            global.base.last_surface = rSurface.name
 
-        rPlayer:setActive(true) 
+            rPlayer:setActive(true) 
 
-        if script.level.level_name == "freeplay" then 
-            
-            --version freeplay (normal game)
-            if rPlayer.force.name ~= "guides" then
-                    if game.forces[rSurface.name] then
-                        rPlayer.player.force = rSurface.name 
-                    else if rSurface.name == "nauvis" then
-                        rPlayer.player.force = "player" 
+            if script.level.level_name == "freeplay" then 
+                
+                --version freeplay (normal game)
+                if rPlayer.force.name ~= "guides" then
+                        if game.forces[rSurface.name] then
+                            rPlayer.player.force = rSurface.name 
+                        else if rSurface.name == "nauvis" then
+                            rPlayer.player.force = "player" 
+                        end
                     end
                 end
+
             end
 
         end
 
+        log('on_player_changed_surface')
     end
-
-    log('on_player_changed_surface')
 end
 
   

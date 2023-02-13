@@ -28,9 +28,12 @@ end
 global.base = { 
     modules = {
         commands = true,
-        player = true,
         lobby = true,
         spaceblock = true,
+        player = {
+            on_player_created = true,
+            on_player_changed_surface = true,
+        },
     },
     lobby = {
         on_chunk_generated = true,

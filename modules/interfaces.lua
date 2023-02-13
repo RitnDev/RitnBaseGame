@@ -15,8 +15,11 @@ local base_interface = {
     ["disable.module.commands"] = function()
         global.base.modules.commands = false
     end,
-    ["disable.module.player"] = function()
-        global.base.modules.player = false
+    ["disable.module.player.on_player_created"] = function()
+        global.base.modules.player.on_player_created = false
+    end,
+    ["disable.module.player.on_player_changed_surface"] = function()
+        global.base.modules.player.on_player_changed_surface = false
     end,
     ["disable.module.lobby"] = function()
         global.base.modules.lobby = false
