@@ -9,6 +9,7 @@ local RitnSurface = require(ritnlib.defines.core.class.surface)
 
 local function on_player_created(e) 
     remote.call('RitnCoreGame', "starting")  
+    if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_created then 
     
         local rPlayer = RitnEvent(e):getPlayer()
@@ -28,6 +29,7 @@ end
 
 
 local function on_player_changed_surface(e)
+    if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_changed_surface then 
         local rEvent = RitnEvent(e)
         local rPlayer = RitnEvent(e):getPlayer()
@@ -66,6 +68,7 @@ end
   
   
 local function on_player_left_game(e)
+    if global.base.modules.player == false then return end
     local rPlayer = RitnEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     rSurface:removePlayer(rPlayer.player)
@@ -75,6 +78,7 @@ end
 
   
 local function on_player_joined_game(e)
+    if global.base.modules.player == false then return end
     local rPlayer = RitnEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     rSurface:addPlayer(rPlayer.player)

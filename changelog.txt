@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 10.03.2023
-  Changes:
+  Control:
     - Changement sur l'initialisation des variables en global du mod.
+    - Changement de l'event 'on_init'.
+  Minor Features:
+    - Changement de l'emplacement de la déclaration on_chunk_generated du mod "spaceblock".
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 29.01.2023
