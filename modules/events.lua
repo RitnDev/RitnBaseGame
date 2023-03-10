@@ -25,7 +25,7 @@ end
 -------------------------------------------
 -- INIT GLOBAL MOD
 -------------------------------------------
-if not global.base then
+if not global.base.initialize then
     global.base = { 
         modules = {
             commands = true,
@@ -40,7 +40,8 @@ if not global.base then
             on_chunk_generated = true,
             on_player_changed_surface = true,
         },
-        last_surface = "" 
+        last_surface = "" ,
+        initialize = true
     }
 end
 -------------------------------------------
