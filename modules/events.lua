@@ -25,21 +25,23 @@ end
 -------------------------------------------
 -- INIT GLOBAL MOD
 -------------------------------------------
-global.base = { 
-    modules = {
-        commands = true,
-        lobby = true,
-        spaceblock = true,
-        player = {
-            on_player_created = true,
+if not global.base then
+    global.base = { 
+        modules = {
+            commands = true,
+            lobby = true,
+            spaceblock = true,
+            player = {
+                on_player_created = true,
+                on_player_changed_surface = true,
+            },
+        },
+        lobby = {
+            on_chunk_generated = true,
             on_player_changed_surface = true,
         },
-    },
-    lobby = {
-        on_chunk_generated = true,
-        on_player_changed_surface = true,
-    },
-    last_surface = "" 
-}
+        last_surface = "" 
+    }
+end
 -------------------------------------------
 return events
