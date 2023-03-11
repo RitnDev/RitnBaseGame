@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 11.03.2023
+  Minor Features:
+    - Création du fichier 'globals' charger à l'étape 'control'.
+  Control:
+    - ajout d'un "on_configuration_changed" avec initialisation des joueurs.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 10.03.2023
   Control:
