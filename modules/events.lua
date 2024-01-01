@@ -5,6 +5,7 @@ local flib = require(ritnlib.defines.other)
 ---------------------------------------------------------------------------------------------
 local RitnPlayer = require(ritnlib.defines.core.class.player)
 local RitnSurface = require(ritnlib.defines.core.class.surface)
+local RitnForce = require(ritnlib.defines.core.class.force)
 ---------------------------------------------------------------------------------------------
 
 local function on_init(event)
@@ -41,7 +42,8 @@ local function on_configuration_changed(event)
             or script.level.level_name ~= "wave-defense"
             or script.level.level_name ~= "pvp" then 
                 -- Creation de la structure de map dans les données
-                local rSurface = RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
+                RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
+                RitnForce(rPlayer.force):addPlayer(rPlayer.player)
             end
 
             rPlayer:init()

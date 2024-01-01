@@ -17,6 +17,7 @@ local defines = {
         interfaces = mod_name .. ".modules.interfaces",
         commands = mod_name .. ".modules.commands",
         ----
+        force = mod_name .. ".modules.force",
         player = mod_name .. ".modules.player",
         lobby = mod_name .. ".modules.lobby",
     },

@@ -4,6 +4,7 @@ local libInventory = require(ritnlib.defines.class.ritnClass.inventory)
 ----
 local RitnEvent = require(ritnlib.defines.core.class.event)
 local RitnSurface = require(ritnlib.defines.core.class.surface)
+local RitnForce = require(ritnlib.defines.core.class.force)
 ---------------------------------------------------------------------------------------------
 
 
@@ -18,7 +19,8 @@ local function on_player_created(e)
         or script.level.level_name ~= "wave-defense"
         or script.level.level_name ~= "pvp" then 
             -- Creation de la structure de map dans les données
-            local rSurface = RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
+            RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
+            RitnForce(rPlayer.force):addPlayer(rPlayer.player)
         end
         
         rPlayer:new()
@@ -65,14 +67,33 @@ local function on_player_changed_surface(e)
     end
 end
 
+local function on_player_changed_force(e)
+    if global.base.modules.player == false then return end
+    local rEvent = RitnEvent(e)
+    local rPlayer = RitnEvent(e):getPlayer()
+    
+    -- remove old force
+    local rForce = rEvent:getForce()
+    rForce:removePlayer(rPlayer.player)
+    -- add new force
+    rForce = rPlayer:getForce()
+    rForce:addPlayer(rPlayer.player)
+
+    log('on_player_changed_force')
+end
+
   
   
 local function on_player_left_game(e)
     if global.base.modules.player == false then return end
     local rPlayer = RitnEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
+    local rForce = rPlayer:getForce()
     rSurface:removePlayer(rPlayer.player)
+    rForce:removePlayer(rPlayer.player)
     rPlayer:online()
+
+    log('on_player_left_game')
 end
   
 
@@ -81,8 +102,12 @@ local function on_player_joined_game(e)
     if global.base.modules.player == false then return end
     local rPlayer = RitnEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
+    local rForce = rPlayer:getForce()
     rSurface:addPlayer(rPlayer.player)
+    rForce:addPlayer(rPlayer.player)
     rPlayer:online()
+
+    log('on_player_joined_game')
 end
 
 
@@ -94,6 +119,7 @@ local module = {events = {}}
 -- Events Player
 module.events[defines.events.on_player_created] = on_player_created
 module.events[defines.events.on_player_changed_surface] = on_player_changed_surface
+module.events[defines.events.on_player_changed_force] = on_player_changed_force
 module.events[defines.events.on_player_left_game] = on_player_left_game
 module.events[defines.events.on_player_joined_game] = on_player_joined_game
 ---------------------------------------------------------------------------------------------
