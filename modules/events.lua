@@ -15,7 +15,8 @@ local function on_init(event)
     flib.callRemoteFreeplay("set_skip_intro")
     flib.callRemoteFreeplay("set_disable_crashsite")
     remote.call('RitnCoreGame', "set_enemy", {
-        active = true
+        active = false,
+        force_disable = true,
     })
     -- for freeplay mode
     pcall(function()
