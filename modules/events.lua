@@ -31,6 +31,14 @@ end
 
 
 local function on_configuration_changed(event)
+    local enemy = remote.call('RitnCoreGame', 'get_enemy')
+    if enemy.force_disable == nil then 
+        remote.call('RitnCoreGame', "set_enemy", {
+            active = enemy.active,
+            force_disable = false,
+        })
+    end
+
     remote.call('RitnCoreGame', "starting")  
     if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_created then 
