@@ -11,13 +11,24 @@ local RitnForce = require(ritnlib.defines.core.class.force)
 local function on_init(event)
     log('RitnBaseGame -> on_init !')
     ------------------------------------------
+    local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
+    local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
+    ------------------------------------------ 
     flib.callRemoteFreeplay("set_respawn_items")
     flib.callRemoteFreeplay("set_skip_intro")
     flib.callRemoteFreeplay("set_disable_crashsite")
-    remote.call('RitnCoreGame', "set_enemy", {
-        active = false,
-        force_disable = true,
-    })
+    ------------------------------------------
+    local enemy = remote.call('RitnCoreGame', "get_enemy")
+        if enemy == nil then enemy = {} end
+        enemy.active = false
+        enemy.force_disable = not setting_force_disable_enemy
+    remote.call('RitnCoreGame', "set_enemy", enemy)
+    ------------------------------------------
+    local options = remote.call('RitnCoreGame', "get_options")
+        if options == nil then options = {} end
+        options.go_nauvis = setting_go_nauvis
+    remote.call('RitnCoreGame', "set_options", options)
+    ------------------------------------------
     -- for freeplay mode
     pcall(function()
         global.crashed_ship_items = remote.call("freeplay", "get_ship_items")
@@ -31,13 +42,21 @@ end
 
 
 local function on_configuration_changed(event)
-    local enemy = remote.call('RitnCoreGame', 'get_enemy')
-    if enemy.force_disable == nil then 
-        remote.call('RitnCoreGame', "set_enemy", {
-            active = enemy.active,
-            force_disable = false,
-        })
-    end
+    ------------------------------------------
+    local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
+    local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
+    ------------------------------------------
+    local enemy = remote.call('RitnCoreGame', "get_enemy")
+        if enemy == nil then enemy = {} end
+        enemy.active = false
+        enemy.force_disable = not setting_force_disable_enemy
+    remote.call('RitnCoreGame', "set_enemy", enemy)
+    ------------------------------------------
+    local options = remote.call('RitnCoreGame', "get_options")
+        if options == nil then options = {} end
+        options.go_nauvis = setting_go_nauvis
+    remote.call('RitnCoreGame', "set_options", options)
+    ------------------------------------------
 
     remote.call('RitnCoreGame', "starting")  
     if global.base.modules.player == false then return end

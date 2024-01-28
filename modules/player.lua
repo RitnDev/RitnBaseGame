@@ -7,11 +7,18 @@ local RitnSurface = require(ritnlib.defines.core.class.surface)
 local RitnForce = require(ritnlib.defines.core.class.force)
 ---------------------------------------------------------------------------------------------
 
+--[[
+    TODO :
+        - parametre de mods pour allez sur Nauvis à la place de la map nommé
+        - parametre de mods pour enlever le forcage de desactivation des enemy
+]]
+
 
 local function on_player_created(e) 
     remote.call('RitnCoreGame', "starting")  
     if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_created then 
+        local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
     
         local rPlayer = RitnEvent(e):getPlayer()
         
@@ -23,7 +30,8 @@ local function on_player_created(e)
             RitnForce(rPlayer.force):addPlayer(rPlayer.player)
         end
         
-        rPlayer:new()
+        local options = remote.call('RitnCoreGame', 'get_options')
+        rPlayer:new(not options.go_nauvis)
 
         log('on_player_created')
     end
