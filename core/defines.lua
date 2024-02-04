@@ -1,8 +1,7 @@
 -----------------------------------------
 --               DEFINES               --
 -----------------------------------------
-if not ritnlib then require("__RitnLib__.defines") end
-require("__RitnCoreGame__.core.defines")
+if not ritnlib then require("__RitnCoreGame__.core.defines") end
 -----------------------------------------
 local name = "RitnBaseGame"
 local mod_name = "__"..name.."__"
