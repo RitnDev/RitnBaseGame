@@ -5,6 +5,7 @@ if global.base == nil then
     global.base = { 
         modules = {
             lobby = true,
+            surface = true,
             spaceblock = true,
             player = {
                 on_player_created = true,
@@ -37,6 +38,9 @@ local base_interface = {
     end,
     ["disable.module.player.on_player_changed_surface"] = function()
         global.base.modules.player.on_player_changed_surface = false
+    end,
+    ["disable.module.surface"] = function()
+        global.base.modules.surface = false
     end,
     ["disable.module.lobby"] = function()
         global.base.modules.lobby = false

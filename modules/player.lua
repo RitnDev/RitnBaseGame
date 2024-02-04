@@ -7,12 +7,6 @@ local RitnSurface = require(ritnlib.defines.core.class.surface)
 local RitnForce = require(ritnlib.defines.core.class.force)
 ---------------------------------------------------------------------------------------------
 
---[[
-    TODO :
-        - parametre de mods pour allez sur Nauvis à la place de la map nommé
-        - parametre de mods pour enlever le forcage de desactivation des enemy
-]]
-
 
 local function on_player_created(e) 
     remote.call('RitnCoreGame', "starting")  
