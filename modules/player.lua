@@ -12,7 +12,6 @@ local function on_player_created(e)
     remote.call('RitnCoreGame', "starting")  
     if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_created then 
-        local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
     
         local rPlayer = RitnEvent(e):getPlayer()
         

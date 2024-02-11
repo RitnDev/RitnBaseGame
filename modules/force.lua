@@ -12,6 +12,7 @@ end
 
 
 local function on_force_created(e)
+    log('> on_force_created')
     --nothing
 end
 
