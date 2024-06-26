@@ -1,8 +1,5 @@
 -- MODULE : FORCE
 ---------------------------------------------------------------------------------------------
-local RitnEvent = require(ritnlib.defines.core.class.event)
-local RitnForce = require(ritnlib.defines.core.class.force)
----------------------------------------------------------------------------------------------
 
 
 local function on_force_cease_fire_changed(e)
@@ -31,16 +28,16 @@ end
 
 
 local function on_forces_merged(e)
-    local rEvent = RitnEvent(e)
-    RitnForce.delete(rEvent.source_name)
+    local rEvent = RitnCoreEvent(e)
+    RitnCoreForce.delete(rEvent.source_name)
 end
 
 
 
 local function on_forces_merging(e)
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
     local rForce = rEvent:getForce()
-    local players = RitnForce(rEvent.source):listPlayers()
+    local players = RitnCoreForce(rEvent.source):listPlayers()
 
     for player_name,_ in ipairs(players) do 
         rForce:addPlayer(player_name)

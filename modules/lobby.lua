@@ -1,6 +1,5 @@
 -- MODULE : LOBBY
 ---------------------------------------------------------------------------------------------
-local RitnEvent = require(ritnlib.defines.core.class.event)
 local spaceblock = require(ritnlib.defines.core.mods.spaceblock)
 ---------------------------------------------------------------------------------------------
 
@@ -8,7 +7,7 @@ local spaceblock = require(ritnlib.defines.core.mods.spaceblock)
 local function on_chunk_generated(e)
     if global.base.modules.lobby == false then return end
     if global.base.lobby.on_chunk_generated then 
-        RitnEvent(e):generateLobby()
+        RitnCoreEvent(e):generateLobby()
         ----
         if global.base.modules.spaceblock then
             remote.call("RitnCoreGame", "spaceblock", e)
@@ -19,11 +18,11 @@ end
 
 local function on_player_changed_surface(e)
     if global.base.modules.lobby == false then return end
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
 
     if global.base.lobby.on_player_changed_surface then 
 
-        local rPlayer = RitnEvent(e):getPlayer()
+        local rPlayer = RitnCoreEvent(e):getPlayer()
 
         if string.sub(rPlayer.surface.name, 1, string.len(rEvent.prefix_lobby)) == rEvent.prefix_lobby then
             local rSurface = rEvent:getSurface()

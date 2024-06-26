@@ -3,10 +3,7 @@
 ---------------------------------------------------------------------------------------------
 local flib = require(ritnlib.defines.other)
 ---------------------------------------------------------------------------------------------
-local RitnPlayer = require(ritnlib.defines.core.class.player)
-local RitnSurface = require(ritnlib.defines.core.class.surface)
-local RitnForce = require(ritnlib.defines.core.class.force)
----------------------------------------------------------------------------------------------
+
 
 local function on_init(event)
     log('RitnBaseGame -> on_init !')
@@ -64,14 +61,14 @@ local function on_configuration_changed(event)
     
         for _,LuaPlayer in pairs(game.players) do
 
-            local rPlayer = RitnPlayer(LuaPlayer)
+            local rPlayer = RitnCorePlayer(LuaPlayer)
             
             if script.level.campaign_name 
             or script.level.level_name ~= "wave-defense"
             or script.level.level_name ~= "pvp" then 
                 -- Creation de la structure de map dans les données
-                RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
-                RitnForce(rPlayer.force):addPlayer(rPlayer.player)
+                RitnCoreSurface(rPlayer.surface):addPlayer(rPlayer.player)
+                RitnCoreForce(rPlayer.force):addPlayer(rPlayer.player)
             end
 
             rPlayer:init()

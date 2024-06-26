@@ -1,12 +1,12 @@
 {
   "name": "RitnBaseGame",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "title": "RitnBaseGame",
   "author": "Ritn",
   "description": "Base du système de jeu développé par Ritn.\nBase of a game system that is developed by Ritn.",
   "factorio_version": "1.1",
   "dependencies":[
     "base >= 1.1",
-    "RitnCoreGame >= 0.4"
+    "RitnCoreGame >= 0.5"
   ]
 }

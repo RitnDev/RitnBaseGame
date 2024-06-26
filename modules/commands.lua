@@ -2,7 +2,7 @@
 ---------------------------------------------------------------------------------
 
 -- Pour admin seulement : exclure un joueur de sa map.
-commands.add_command("surfaces", "", 
+commands.add_command("ritnbase.surfaces", "", 
 function (e)
     local surfaces = remote.call("RitnCoreGame", "get_surfaces")
     local LuaPlayer = {}

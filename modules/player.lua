@@ -1,11 +1,5 @@
 -- MODULE : PLAYER
 ---------------------------------------------------------------------------------------------
-local libInventory = require(ritnlib.defines.class.ritnClass.inventory)
-----
-local RitnEvent = require(ritnlib.defines.core.class.event)
-local RitnSurface = require(ritnlib.defines.core.class.surface)
-local RitnForce = require(ritnlib.defines.core.class.force)
----------------------------------------------------------------------------------------------
 
 
 local function on_player_created(e) 
@@ -13,14 +7,14 @@ local function on_player_created(e)
     if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_created then 
     
-        local rPlayer = RitnEvent(e):getPlayer()
+        local rPlayer = RitnCoreEvent(e):getPlayer()
         
         if script.level.campaign_name 
         or script.level.level_name ~= "wave-defense"
         or script.level.level_name ~= "pvp" then 
             -- Creation de la structure de map dans les données
-            RitnSurface(rPlayer.surface):addPlayer(rPlayer.player)
-            RitnForce(rPlayer.force):addPlayer(rPlayer.player)
+            RitnCoreSurface(rPlayer.surface):addPlayer(rPlayer.player)
+            RitnCoreForce(rPlayer.force):addPlayer(rPlayer.player)
         end
         
         local options = remote.call('RitnCoreGame', 'get_options')
@@ -34,8 +28,8 @@ end
 local function on_player_changed_surface(e)
     if global.base.modules.player == false then return end
     if global.base.modules.player.on_player_changed_surface then 
-        local rEvent = RitnEvent(e)
-        local rPlayer = RitnEvent(e):getPlayer()
+        local rEvent = RitnCoreEvent(e)
+        local rPlayer = RitnCoreEvent(e):getPlayer()
 
         if string.sub(rPlayer.surface.name, 1, string.len(rEvent.prefix_lobby)) ~= rEvent.prefix_lobby then
             -- remove old surface
@@ -70,8 +64,8 @@ end
 
 local function on_player_changed_force(e)
     if global.base.modules.player == false then return end
-    local rEvent = RitnEvent(e)
-    local rPlayer = RitnEvent(e):getPlayer()
+    local rEvent = RitnCoreEvent(e)
+    local rPlayer = RitnCoreEvent(e):getPlayer()
     
     -- remove old force
     local rForce = rEvent:getForce()
@@ -87,7 +81,7 @@ end
   
 local function on_player_left_game(e)
     if global.base.modules.player == false then return end
-    local rPlayer = RitnEvent(e):getPlayer()
+    local rPlayer = RitnCoreEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     local rForce = rPlayer:getForce()
     rSurface:removePlayer(rPlayer.player)
@@ -101,7 +95,7 @@ end
   
 local function on_player_joined_game(e)
     if global.base.modules.player == false then return end
-    local rPlayer = RitnEvent(e):getPlayer()
+    local rPlayer = RitnCoreEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     local rForce = rPlayer:getForce()
     rSurface:addPlayer(rPlayer.player)
