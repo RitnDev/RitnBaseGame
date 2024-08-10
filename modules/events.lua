@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------
 -- EVENTS
 ---------------------------------------------------------------------------------------------
-local flib = require(ritnlib.defines.other)
+local util = require(ritnlib.defines.other)
 ---------------------------------------------------------------------------------------------
 
 
@@ -11,9 +11,9 @@ local function on_init(event)
     local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
     local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
     ------------------------------------------ 
-    flib.callRemoteFreeplay("set_respawn_items")
-    flib.callRemoteFreeplay("set_skip_intro")
-    flib.callRemoteFreeplay("set_disable_crashsite")
+    util.callRemoteFreeplay("set_respawn_items")
+    util.callRemoteFreeplay("set_skip_intro")
+    util.callRemoteFreeplay("set_disable_crashsite")
     ------------------------------------------
     local enemy = remote.call('RitnCoreGame', "get_enemy")
         if enemy == nil then enemy = {} end

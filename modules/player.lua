@@ -100,6 +100,11 @@ local function on_player_joined_game(e)
     local rForce = rPlayer:getForce()
     rSurface:addPlayer(rPlayer.player)
     rForce:addPlayer(rPlayer.player)
+
+    if rForce:isForceDefault() then 
+        rForce:deleteInventory(rPlayer.player)
+    end
+    
     rPlayer:online()
 
     log('on_player_joined_game')

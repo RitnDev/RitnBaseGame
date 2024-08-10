@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.1
+Date: 10.08.2024
+  Adds:
+    - Ajouts de remote commands :
+      - "disable.lobby.setup_lobby_surface" : désactive la mise en place de base du lobby
+      - "disable.lobby.on_player_changed_force" : permet de désactivé l'event on_player_changed_force
+    - Ajouts d'events : 
+      - on_player_changed_force : gestion des inventaires (save/load/insert) sur changement de force. (module: lobby)
+    - Ajouts des methodes :
+      - 
+  Changes:
+    - Events : 
+      - si la remote commands "disable.lobby.setup_lobby_surface" a été effectué cela désactive une partie
+        de la mise en place du lobby de RitnBaseGame (creation de surface / teleportation auto) dans l'event 
+        on_player_changed_surface. (module: lobby)
+      - on_player_joined_game (module: player) : Si le joueur arrive en jeu avec la force "force~default", 
+        on supprime son inventaire.
+---------------------------------------------------------------------------------------------------
 Version: 0.5.0
 Date: 26.06.2024
   Changes:

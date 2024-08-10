@@ -15,6 +15,8 @@ if global.base == nil then
         lobby = {
             on_chunk_generated = true,
             on_player_changed_surface = true,
+            on_player_changed_force = true,
+            setup_lobby_surface = true
         },
         last_surface = ""
     }
@@ -31,6 +33,14 @@ local base_interface = {
     ["disable.lobby.on_player_changed_surface"] = function()  
         global.base.lobby.on_player_changed_surface = false
     end,
+    ["disable.lobby.setup_lobby_surface"] = function()  
+        global.base.lobby.setup_lobby_surface = false
+    end,
+    ["disable.lobby.on_player_changed_force"] = function()  
+        global.base.lobby.on_player_changed_force = false
+    end,
+    
+
 
     --disable modules
     ["disable.module.player.on_player_created"] = function()
@@ -48,6 +58,7 @@ local base_interface = {
     ["disable.module.spaceblock"] = function()
         global.base.modules.spaceblock = false
     end,
+
 }
 
 remote.add_interface("RitnBaseGame", base_interface)
