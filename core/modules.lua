@@ -1,8 +1,9 @@
 local modules = {}
+log('modules RitnBaseGame')
 ------------------------------------------------------------------------------
 
 -- Inclus les events onInit et onLoad + les ajouts des fonctions d'interfaces.
-modules.globals =               require(ritnlib.defines.base.modules.globals)
+modules.storage =               require(ritnlib.defines.base.modules.storage)
 modules.events =                require(ritnlib.defines.base.modules.events)
 modules.commands =              require(ritnlib.defines.base.modules.commands)
 

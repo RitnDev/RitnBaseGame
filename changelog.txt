@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.0
+Date: 12.10.2024
+  Changes:
+    - Passage en 2.0.
+    - Variables "global" -> "storage".
+  Fixes:
+    - core.lualib.event_handler : on_init, on_configuration_changed passe dans le module désormais.
+---------------------------------------------------------------------------------------------------
 Version: 0.5.1
 Date: 10.08.2024
   Adds:

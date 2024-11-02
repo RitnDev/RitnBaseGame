@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------
 -- GLOBALS
 ---------------------------------------------------------------------------------------------
-if global.base == nil then
-    global.base = { 
+if storage.base == nil then
+    storage.base = { 
         modules = {
             lobby = true,
             surface = true,
@@ -28,35 +28,35 @@ end
 local base_interface = {
     -- lobby (events)
     ["disable.lobby.on_chunk_generated"] = function()
-        global.base.lobby.on_chunk_generated = false
+        storage.base.lobby.on_chunk_generated = false
     end,
     ["disable.lobby.on_player_changed_surface"] = function()  
-        global.base.lobby.on_player_changed_surface = false
+        storage.base.lobby.on_player_changed_surface = false
     end,
     ["disable.lobby.setup_lobby_surface"] = function()  
-        global.base.lobby.setup_lobby_surface = false
+        storage.base.lobby.setup_lobby_surface = false
     end,
     ["disable.lobby.on_player_changed_force"] = function()  
-        global.base.lobby.on_player_changed_force = false
+        storage.base.lobby.on_player_changed_force = false
     end,
     
 
 
     --disable modules
     ["disable.module.player.on_player_created"] = function()
-        global.base.modules.player.on_player_created = false
+        storage.base.modules.player.on_player_created = false
     end,
     ["disable.module.player.on_player_changed_surface"] = function()
-        global.base.modules.player.on_player_changed_surface = false
+        storage.base.modules.player.on_player_changed_surface = false
     end,
     ["disable.module.surface"] = function()
-        global.base.modules.surface = false
+        storage.base.modules.surface = false
     end,
     ["disable.module.lobby"] = function()
-        global.base.modules.lobby = false
+        storage.base.modules.lobby = false
     end,
     ["disable.module.spaceblock"] = function()
-        global.base.modules.spaceblock = false
+        storage.base.modules.spaceblock = false
     end,
 
 }

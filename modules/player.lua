@@ -4,8 +4,8 @@
 
 local function on_player_created(e) 
     remote.call('RitnCoreGame', "starting")  
-    if global.base.modules.player == false then return end
-    if global.base.modules.player.on_player_created then 
+    if storage.base.modules.player == false then return end
+    if storage.base.modules.player.on_player_created then 
     
         local rPlayer = RitnCoreEvent(e):getPlayer()
         
@@ -26,8 +26,8 @@ end
 
 
 local function on_player_changed_surface(e)
-    if global.base.modules.player == false then return end
-    if global.base.modules.player.on_player_changed_surface then 
+    if storage.base.modules.player == false then return end
+    if storage.base.modules.player.on_player_changed_surface then 
         local rEvent = RitnCoreEvent(e)
         local rPlayer = RitnCoreEvent(e):getPlayer()
 
@@ -38,7 +38,7 @@ local function on_player_changed_surface(e)
             -- add new surface
             rSurface = rPlayer:getSurface()
             rSurface:addPlayer(rPlayer.player)
-            global.base.last_surface = rSurface.name
+            storage.base.last_surface = rSurface.name
 
             rPlayer:setActive(true) 
 
@@ -63,7 +63,7 @@ local function on_player_changed_surface(e)
 end
 
 local function on_player_changed_force(e)
-    if global.base.modules.player == false then return end
+    if storage.base.modules.player == false then return end
     local rEvent = RitnCoreEvent(e)
     local rPlayer = RitnCoreEvent(e):getPlayer()
     
@@ -77,10 +77,10 @@ local function on_player_changed_force(e)
     log('on_player_changed_force')
 end
 
-  
-  
+
+
 local function on_player_left_game(e)
-    if global.base.modules.player == false then return end
+    if storage.base.modules.player == false then return end
     local rPlayer = RitnCoreEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     local rForce = rPlayer:getForce()
@@ -90,11 +90,11 @@ local function on_player_left_game(e)
 
     log('on_player_left_game')
 end
-  
 
-  
+
+
 local function on_player_joined_game(e)
-    if global.base.modules.player == false then return end
+    if storage.base.modules.player == false then return end
     local rPlayer = RitnCoreEvent(e):getPlayer()
     local rSurface = rPlayer:getSurface()
     local rForce = rPlayer:getForce()

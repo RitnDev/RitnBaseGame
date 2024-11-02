@@ -5,7 +5,7 @@ local util = require(ritnlib.defines.other)
 ---------------------------------------------------------------------------------------------
 
 
-local function on_init(event)
+local function on_init_mod(event)
     log('RitnBaseGame -> on_init !')
     ------------------------------------------
     local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
@@ -28,9 +28,9 @@ local function on_init(event)
     ------------------------------------------
     -- for freeplay mode
     pcall(function()
-        global.crashed_ship_items = remote.call("freeplay", "get_ship_items")
-        global.crashed_debris_items = remote.call("freeplay", "get_debris_items")
-        global.crashed_ship_parts = remote.call("freeplay", "get_ship_parts")
+        storage.crashed_ship_items = remote.call("freeplay", "get_ship_items")
+        storage.crashed_debris_items = remote.call("freeplay", "get_debris_items")
+        storage.crashed_ship_parts = remote.call("freeplay", "get_ship_parts")
     end)
     ------------------------------------------
     log('on_init : RitnBaseGame -> finish !')
@@ -56,8 +56,8 @@ local function on_configuration_changed(event)
     ------------------------------------------
 
     remote.call('RitnCoreGame', "starting")  
-    if global.base.modules.player == false then return end
-    if global.base.modules.player.on_player_created then 
+    if storage.base.modules.player == false then return end
+    if storage.base.modules.player.on_player_created then 
     
         for _,LuaPlayer in pairs(game.players) do
 
@@ -76,8 +76,11 @@ local function on_configuration_changed(event)
     end
 end
 
--------------------------------------------
-script.on_init(on_init)
-script.on_configuration_changed(on_configuration_changed)
 ---------------------------------------------------------------------------------------------
-return {}
+local module = {events = {}}
+---------------------------------------------------------------------------------------------
+-- events :
+module.on_init = on_init_mod
+module.on_configuration_changed = on_configuration_changed
+---------------------------------------------------------------------------------------------
+return module

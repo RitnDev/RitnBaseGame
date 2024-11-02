@@ -5,11 +5,11 @@ local spaceblock = require(ritnlib.defines.core.mods.spaceblock)
 
 -- generate lobby
 local function on_chunk_generated(e)
-    if global.base.modules.lobby == false then return end
-    if global.base.lobby.on_chunk_generated then 
+    if storage.base.modules.lobby == false then return end
+    if storage.base.lobby.on_chunk_generated then 
         RitnCoreEvent(e):generateLobby()
         ----
-        if global.base.modules.spaceblock then
+        if storage.base.modules.spaceblock then
             remote.call("RitnCoreGame", "spaceblock", e)
         end
     end
@@ -17,8 +17,8 @@ end
 
 
 local function on_player_changed_surface(e)
-    if global.base.modules.lobby == false then return end
-    if global.base.lobby.on_player_changed_surface then 
+    if storage.base.modules.lobby == false then return end
+    if storage.base.lobby.on_player_changed_surface then 
 
         local rEvent = RitnCoreEvent(e)
         local rPlayer = RitnCoreEvent(e):getPlayer()
@@ -33,14 +33,14 @@ local function on_player_changed_surface(e)
             -- mettre le rPlayer dans la force "ritn~default"
             rPlayer.player.force = rEvent.FORCE_DEFAULT_NAME
 
-            if global.base.lobby.setup_lobby_surface then
+            if storage.base.lobby.setup_lobby_surface then
                 local nbSurfaces = remote.call('RitnCoreGame', 'get_values', 'surfaces')
                 if nbSurfaces == 1 then
                     -- create new surface
                     rPlayer:createSurface()
                 else
                     -- join surface
-                    rPlayer:teleport({0,0}, global.base.last_surface, true)
+                    rPlayer:teleport({0,0}, storage.base.last_surface, true)
                 end
             end
 
@@ -53,7 +53,7 @@ end
 
 
 local function on_player_changed_force(e) 
-    if global.base.lobby.on_player_changed_force then
+    if storage.base.lobby.on_player_changed_force then
         local rEvent = RitnCoreEvent(e)
         
         -- On sauvegarde l'inventaire de la force avant changement
