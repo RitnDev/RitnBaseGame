@@ -5,7 +5,8 @@
 -- Gestion de l'event surface supprimé : on_pre_surface_deleted
 local function on_pre_surface_deleted(e)
     if storage.base.modules.surface == false then return end
-    RitnCoreEvent(e):getSurface():delete()
+    local rEvent = RitnCoreEvent(e)
+    RitnCoreSurface.delete(rEvent.surface.name)
     log('on_pre_surface_deleted')
 end
 
