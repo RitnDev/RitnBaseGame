@@ -2,6 +2,7 @@
 -- EVENTS
 ---------------------------------------------------------------------------------------------
 local util = require(ritnlib.defines.other)
+local migration = require("core.migrations")
 ---------------------------------------------------------------------------------------------
 
 
@@ -74,6 +75,8 @@ local function on_configuration_changed(event)
             rPlayer:init()
         end
     end
+    -- migration storage
+    migration.version(0,6,1)
 end
 
 ---------------------------------------------------------------------------------------------
