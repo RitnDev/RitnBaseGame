@@ -1,8 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.1
 Date: 12.10.2024
-  Fixes:
-    - Utilisation de la fonction RitnCoreSurface.delete(surface_name) sur l'event : on_pre_surface_deleted.
+  Changes:
+    - Suppression du module: surface (déplacé dans RitnCoreGame).
+    - La paramètres "go Nauvis" est activé par défaut.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.0
 Date: 12.10.2024
