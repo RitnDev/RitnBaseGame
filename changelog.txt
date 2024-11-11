@@ -4,6 +4,11 @@ Date: 12.10.2024
   Changes:
     - Suppression du module: surface (déplacé dans RitnCoreGame).
     - La paramètres "go Nauvis" est activé par défaut.
+  Adds:
+    - Ajout d'un fichier de migration.
+  Fixes:
+    - Les joueurs ne voient que les surfaces sur lesquel il se trouve.
+    - Migration des anciennes parties 1.1.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.0
 Date: 12.10.2024
