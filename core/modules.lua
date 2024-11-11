@@ -6,7 +6,6 @@ log('modules RitnBaseGame')
 modules.storage =               require(ritnlib.defines.base.modules.storage)
 modules.events =                require(ritnlib.defines.base.modules.events)
 modules.commands =              require(ritnlib.defines.base.modules.commands)
-
 ------------------------------------------------------------------------------
 modules.force =                 require(ritnlib.defines.base.modules.force)
 ------------------------------------------------------------------------------
