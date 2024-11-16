@@ -20,7 +20,7 @@ local defines = {
         ----
         force = mod_name .. ".modules.force",
         player = mod_name .. ".modules.player",
-        --surface = mod_name .. ".modules.surface",
+        surface = mod_name .. ".modules.surface",
         lobby = mod_name .. ".modules.lobby",
     },    
 }

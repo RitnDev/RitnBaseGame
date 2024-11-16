@@ -11,6 +11,7 @@ modules.force =                 require(ritnlib.defines.base.modules.force)
 ------------------------------------------------------------------------------
 -- Modules désactivable
 modules.player =                require(ritnlib.defines.base.modules.player)  
+modules.surface =               require(ritnlib.defines.base.modules.surface)
 modules.lobby =                 require(ritnlib.defines.base.modules.lobby) 
 ------------------------------------------------------------------------------
 return modules
