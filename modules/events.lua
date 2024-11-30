@@ -42,7 +42,7 @@ end
 local function on_configuration_changed(event)
     ------------------------------------------
     local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
-    local setting_go_nauvis = settings.startup[ritnlib.defines.base.so_nauvis.name].value
+    local setting_go_nauvis = settings.startup[ritnlib.defines.base.go_nauvis.name].value
     ------------------------------------------
     local enemy = remote.call('RitnCoreGame', "get_enemy")
     if enemy == nil then 
