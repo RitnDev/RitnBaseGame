@@ -25,6 +25,24 @@ local function on_player_created(e)
 end
 
 
+local function on_player_joined_game(e)
+    if storage.base.modules.player == false then return end
+    local rPlayer = RitnCoreEvent(e):getPlayer()
+    local rSurface = rPlayer:getSurface()
+    local rForce = rPlayer:getForce()
+    rSurface:addPlayer(rPlayer.player)
+    rForce:addPlayer(rPlayer.player)
+
+    if rForce:isForceDefault() then 
+        rForce:deleteInventory(rPlayer.player)
+    end
+    
+    rPlayer:online()
+
+    log('on_player_joined_game')
+end
+
+
 local function on_player_changed_surface(e)
     if storage.base.modules.player == false then return end
     if storage.base.modules.player.on_player_changed_surface then 
@@ -90,27 +108,6 @@ local function on_player_left_game(e)
 
     log('on_player_left_game')
 end
-
-
-
-local function on_player_joined_game(e)
-    if storage.base.modules.player == false then return end
-    local rPlayer = RitnCoreEvent(e):getPlayer()
-    local rSurface = rPlayer:getSurface()
-    local rForce = rPlayer:getForce()
-    rSurface:addPlayer(rPlayer.player)
-    rForce:addPlayer(rPlayer.player)
-
-    if rForce:isForceDefault() then 
-        rForce:deleteInventory(rPlayer.player)
-    end
-    
-    rPlayer:online()
-
-    log('on_player_joined_game')
-end
-
-
 
 
 ---------------------------------------------------------------------------------------------
