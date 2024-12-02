@@ -30,7 +30,7 @@ local function on_player_changed_surface(e)
             
             rPlayer:setActive(false)
 
-            -- mettre le rPlayer dans la force "ritn~default"
+            -- mettre le rPlayer dans la force "force~default"
             rPlayer.player.force = rEvent.FORCE_DEFAULT_NAME
 
             if storage.base.lobby.setup_lobby_surface then
@@ -51,7 +51,7 @@ local function on_player_changed_surface(e)
     end
 end
 
-
+-- gestion de l'inventaire sur changement de force
 local function on_player_changed_force(e) 
     if storage.base.lobby.on_player_changed_force then
         local rEvent = RitnCoreEvent(e)
@@ -60,20 +60,20 @@ local function on_player_changed_force(e)
         local rOldForce = rEvent:getForce()
         if (rOldForce:isForceDefault() == false) then 
             rOldForce:saveInventory(rEvent.player)
-            log('>>>>>>>>>>>>>>>>>>>>>>>>>  SAVE_INVENTORY : (OLD FORCE) = ' .. rOldForce.name)
+            log('>>>  SAVE_INVENTORY : (OLD FORCE) = ' .. rOldForce.name)
         end
 
         -- On charge l'inventaire de la force d'arrivée
         local rNewForce = RitnCoreForce(rEvent.player.force)
         if (rNewForce:isForceDefault() == false) then 
             rNewForce:loadInventory(rEvent.player)
-            log('>>>>>>>>>>>>>>>>>>>>>>>>>  LOAD_INVENTORY : (NEW FORCE) = ' .. rNewForce.name)
+            log('>>>  LOAD_INVENTORY : (NEW FORCE) = ' .. rNewForce.name)
         end
 
         
         if (rOldForce:isForceDefault() and (rNewForce.name == rEvent.player.name)) then 
             rNewForce:insertInventory(rEvent.player)
-            log('>>>>>>>>>>>>>>>>>>>>>>>>>  INSERT_INVENTORY : (NEW FORCE) = ' .. rNewForce.name)
+            log('>>>  INSERT_INVENTORY : (NEW FORCE) = ' .. rNewForce.name)
         end
 
         log('on_player_changed_force')

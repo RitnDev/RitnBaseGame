@@ -61,7 +61,7 @@ local function on_configuration_changed(event)
     ------------------------------------------
     remote.call('RitnCoreGame', "starting")      
     -- migration storage
-    migration.version(0,6,3)
+    migration.version(0,6,5)
 end
 
 ---------------------------------------------------------------------------------------------
