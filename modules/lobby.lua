@@ -7,8 +7,6 @@ local spaceblock = require(ritnlib.defines.core.mods.spaceblock)
 local function on_chunk_generated(e)
     if storage.base.modules.lobby == false then return end
     if storage.base.lobby.on_chunk_generated then 
-        RitnCoreEvent(e):generateLobby()
-        ----
         if storage.base.modules.spaceblock then
             remote.call("RitnCoreGame", "spaceblock", e)
         end

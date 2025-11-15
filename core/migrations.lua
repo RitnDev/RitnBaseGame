@@ -1,6 +1,7 @@
 -- MIGRATIONS
 ------------------------------------------------------------------------
 local table = require(ritnlib.defines.table)
+local string = require(ritnlib.defines.string)
 ------------------------------------------------------------------------
 -- migration 0.6.1
 local function migration_0_6_1()
@@ -26,12 +27,43 @@ local function migration_0_6_1()
     end
 end
 ------------------------------------------------------------------------
+-- migration 0.6.6 : création de la structures players / forces / surfaces, si le mod est chargé plutard sur une save
+-- à ajouter systématiquement dans les futures migrations
+local function migration_0_6_6()
+    if game.is_multiplayer() then remote.call("RitnCoreGame", "setMultiplayer") end
+    
+    if storage.base.modules.player then
+        if storage.base.modules.player.on_player_created then 
+            -- On boucle sur la liste des LuaPlayer
+            for _,luaPlayer in pairs(game.players) do
+                local rPlayer = RitnCorePlayer(luaPlayer)   
+                
+                if script.level.campaign_name 
+                or script.level.level_name ~= "wave-defense"
+                or script.level.level_name ~= "pvp" then 
+                    -- Creation de la structure de map dans les données
+                    RitnCoreSurface(rPlayer.surface):addPlayer(rPlayer.player)
+                    RitnCoreForce(rPlayer.force):addPlayer(rPlayer.player)
+                end
+                    
+                local options = remote.call('RitnCoreGame', 'get_options')
+                rPlayer:new(false):setOrigine(string.defaultValue(luaPlayer.surface.name))
+
+                log('on_player_created')
+            end
+        end
+    end
+end
+------------------------------------------------------------------------
 local updates_mod = {
     [0] = {
         [6] = {
             [0] = {},
             [1] = {
                 migration_0_6_1,
+            },
+            [6] = {
+                migration_0_6_6,
             }
         }
     }

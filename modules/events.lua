@@ -40,6 +40,7 @@ end
 
 
 local function on_configuration_changed(event)
+    log('RitnBaseGame -> on_configuration_changed')
     ------------------------------------------
     local setting_force_disable_enemy = settings.startup[ritnlib.defines.base.settings.force_disabled_enemy.name].value
     local setting_go_nauvis = settings.startup[ritnlib.defines.base.settings.go_nauvis.name].value
@@ -61,7 +62,7 @@ local function on_configuration_changed(event)
     ------------------------------------------
     remote.call('RitnCoreGame', "starting")      
     -- migration storage
-    migration.version(0,6,5)
+    migration.version(0,6,6)
 end
 
 ---------------------------------------------------------------------------------------------
