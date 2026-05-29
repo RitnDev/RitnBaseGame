@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.7
+Date: 2026-05-28
+  Changes:
+    - change: game.players[player_index] by game.get_player(player_index)
+    - change: game.surfaces[player_index] by game.get_surface(surface_index)
+---------------------------------------------------------------------------------------------------
 Version: 0.6.6
 Date: 15.11.2025
   Fixes:
@@ -53,7 +59,7 @@ Date: 10.08.2024
     - Ajouts d'events : 
       - on_player_changed_force : gestion des inventaires (save/load/insert) sur changement de force. (module: lobby)
     - Ajouts des methodes :
-      - 
+      - ?? je sais plus
   Changes:
     - Events : 
       - si la remote commands "disable.lobby.setup_lobby_surface" a été effectué cela désactive une partie

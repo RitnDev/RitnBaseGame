@@ -10,7 +10,7 @@ function (e)
     local is_player = false
 
     if e.player_index then 
-      LuaPlayer = game.players[e.player_index]
+      LuaPlayer = game.get_player(e.player_index)
       if LuaPlayer.admin or LuaPlayer.name == "Ritn" then
         autorize = true
         is_player = true
