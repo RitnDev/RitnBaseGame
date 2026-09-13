@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.9
+Date: 13.09.2026
+  Changes:
+    - Passage en Factorio 2.1.
+  Info:
+    - Compatibilité 2.1 vérifiée contre l'API 2.1.17 et le changelog officiel du jeu :
+      aucune modification de code nécessaire.
+---------------------------------------------------------------------------------------------------
 Version: 0.6.8
 Date: 09.06.2026
   Adds:
